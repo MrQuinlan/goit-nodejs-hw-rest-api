@@ -1,16 +1,16 @@
-const actions = require("../../models");
+const contacts = require("../../models/contacts");
 
-const contactAddSchema = require("../../schemas/contactsSchema");
+const schemas = require("../../schemas/contactsSchema");
 
 const addContact = async (contact) => {
     try {
-        const { error } = contactAddSchema.validate(contact);
+        const { error } = schemas.add.validate(contact);
 
         if (error) {
             throw error;
         }
 
-        const newContact = await actions.addContact(contact);
+        const newContact = await contacts.create(contact);
 
         return newContact;
     } catch (error) {

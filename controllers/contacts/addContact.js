@@ -1,7 +1,8 @@
 const contactsServices = require("../../services/contacts");
 
-const addContact = async (req, res, next) => {
+const addContact = async (req, res) => {
     const contact = req.body;
+
     const newContact = await contactsServices.addContact(contact);
 
     if (!newContact) {

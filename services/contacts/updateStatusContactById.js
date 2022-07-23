@@ -2,25 +2,25 @@ const contacts = require("../../models/contacts");
 
 const schemas = require("../../schemas/contactsSchema");
 
-const updateContactById = async (contactId, contact) => {
+const updateStatusContactById = async (contactId, status) => {
     try {
-        const { error } = schemas.add.validate(contact);
+        const { error } = schemas.updateFavorite.validate(status);
 
         if (error) {
-            throw new Error("missing fields");
+            throw new Error("missing field favorite");
         }
 
-        const updatedContact = await contacts.findByIdAndUpdate(
+        const updatedStatus = await contacts.findByIdAndUpdate(
             contactId,
-            contact,
+            status,
             { new: true }
         );
 
-        if (!updatedContact) {
+        if (!updatedStatus) {
             throw new Error("not found");
         }
 
-        return updatedContact;
+        return updatedStatus;
     } catch (error) {
         const { message } = error;
 
@@ -30,4 +30,4 @@ const updateContactById = async (contactId, contact) => {
     }
 };
 
-module.exports = updateContactById;
+module.exports = updateStatusContactById;

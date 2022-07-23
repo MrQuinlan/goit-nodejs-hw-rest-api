@@ -1,9 +1,9 @@
-const actions = require("../../models");
+const contacts = require("../../models/contacts");
 
 const getAll = async () => {
     try {
-        const contacts = await actions.listContacts();
-        return contacts;
+        const result = await contacts.find();
+        return result;
     } catch (error) {
         console.log(error);
     }
