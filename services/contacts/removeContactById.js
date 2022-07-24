@@ -1,8 +1,8 @@
-const actions = require("../../models");
+const contacts = require("../../models/contacts");
 
 const removeContactById = async (contactId) => {
     try {
-        const contact = await actions.removeContactById(contactId);
+        const contact = await contacts.findByIdAndRemove(contactId);
 
         if (!contact) {
             throw new Error("not found");

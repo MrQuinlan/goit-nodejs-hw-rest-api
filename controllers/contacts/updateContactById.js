@@ -1,6 +1,6 @@
 const contactsServices = require("../../services/contacts");
 
-const updateContactById = async (req, res, next) => {
+const updateContactById = async (req, res) => {
     const { contactId } = req.params;
     const { body } = req;
 

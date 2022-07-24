@@ -1,6 +1,6 @@
 const contactsServices = require("../../services/contacts");
 
-const getAll = async (req, res, next) => {
+const getAll = async (_, res) => {
     const contacts = await contactsServices.getAll();
 
     res.json(contacts);

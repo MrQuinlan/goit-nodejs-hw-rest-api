@@ -1,11 +1,11 @@
-const actions = require("../../models");
+const contacts = require("../../models/contacts");
 
 const getContactById = async (contactId) => {
     try {
-        const contact = await actions.getContactById(contactId);
+        const contact = await contacts.findById(contactId);
 
         if (!contact) {
-            throw new Error("not111111111 found");
+            throw new Error("not found");
         }
 
         return contact;
