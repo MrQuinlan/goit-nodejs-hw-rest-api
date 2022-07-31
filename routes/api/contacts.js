@@ -2,15 +2,17 @@ const express = require("express");
 
 const ctrlWrapper = require("../../helpers/controlsWrapper");
 
+const { auth } = require("../../middlewares/auth");
+
 const router = express.Router();
 
 const contactsControllers = require("../../controllers/contacts");
 
-router.get("/", ctrlWrapper(contactsControllers.getAll));
+router.get("/", auth, ctrlWrapper(contactsControllers.getAll));
 
 router.get("/:contactId", ctrlWrapper(contactsControllers.getContactById));
 
-router.post("/", ctrlWrapper(contactsControllers.addContact));
+router.post("/", auth, ctrlWrapper(contactsControllers.addContact));
 
 router.delete(
     "/:contactId",
@@ -21,6 +23,7 @@ router.put("/:contactId", ctrlWrapper(contactsControllers.updateContactById));
 
 router.patch(
     "/:contactId/favorite",
+    auth,
     ctrlWrapper(contactsControllers.updateStatusContactById)
 );
 
