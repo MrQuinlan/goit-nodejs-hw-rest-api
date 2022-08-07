@@ -4,7 +4,7 @@ const User = require("../models/user");
 
 const { SECRET_KEY } = process.env;
 
-const auth = async (req, _, next) => {
+const auth = async (req, res, next) => {
     const { authorization = "" } = req.headers;
 
     const [bearer, token] = authorization.split(" ");
@@ -19,7 +19,9 @@ const auth = async (req, _, next) => {
         const user = await User.findById(id);
 
         if (!user || !user.token) {
-            next(new Error("Not authorized"));
+            res.status(401).json({ message: "Not authorized" });
+
+            return;
         }
 
         req.user = user;
@@ -30,4 +32,4 @@ const auth = async (req, _, next) => {
     }
 };
 
-module.exports = { auth };
+module.exports = auth;
