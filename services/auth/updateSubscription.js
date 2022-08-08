@@ -1,4 +1,4 @@
-const user = require("../../models/user");
+const User = require("../../models/user");
 
 const schemas = require("../../schemas/userSchema");
 
@@ -10,7 +10,7 @@ const updateSubscription = async (id, subscription) => {
             throw new Error("missing field subscription");
         }
 
-        const updatedSubscription = await user.findByIdAndUpdate(
+        const updatedSubscription = await User.findByIdAndUpdate(
             id,
             subscription,
             {
